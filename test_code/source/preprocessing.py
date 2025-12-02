@@ -16,13 +16,8 @@ class VQA_Dataset(Dataset):
         image = Image.open(f"{self.img_folder}/{sample['file']}")
         question = sample['question']
         system_message = "You are an effective Question Answering Model. Answer the question with only 2 sentences with format: \"Because <Explain>. So the answer is <Answer>."
-        # system_message = "You are an effective Question Answering Model. Answer the question with only 2 sentences with format: \"Because <Explain>. So the answer is <Answer>.\". Additionally <Answer> is only a word or a number."
-        # system_message = "You are an effective Question Answering Model. Answer the question with only a word or a number."
-
-        # user_prompt = f"Question: {question}\nExplanation: Because {sample['explanation'][0]}. So the answer is "
         if self.is_labeled == True:
             answer = f"Because {sample['explanation']}. So the answer is {sample['answer'][0]}."
-            # answer = sample['answer']
             return [
                 sample['id'],
                 sample['file'],
@@ -52,7 +47,6 @@ class VQA_Dataset(Dataset):
                             {
                                 "type": "text",
                                 "text": question,
-                                # "text": user_prompt,
                             }
                         ],
                     },

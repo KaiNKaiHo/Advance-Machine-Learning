@@ -52,14 +52,14 @@ def generate_text_from_sample(model, processor, sample, max_new_tokens=200, devi
 model_id = "Qwen/Qwen3-VL-2B-Instruct"
 
 model, processor = create_model(model_id)
-adapter_path = "/home/s2510447/Study/term21/Advanced_Machine_learning/checkpoint_yumeyama/checkpoint-2815"
+adapter_path = "./checkpoint/checkpoint-2815"
 model.load_adapter(adapter_path)
 
 
 
 # df = pd.read_csv('/home/s2510447/Study/term21/Advanced_Machine_learning/data/custom_dataset/custom_dataset/train_labels.csv')
 df = pd.read_csv('/home/s2510447/Study/term21/Advanced_Machine_learning/data/custom_dataset/custom_dataset/test_non_labels.csv')
-add_df = pd.read_csv('/home/s2510447/Study/term21/Advanced_Machine_learning/test/test_checkpoint2b_yumeyama/test_check_point2252_fixed+.csv')
+add_df = pd.read_csv('./test/gen_reasoning_1126.csv')
 img_folder = "/home/s2510447/Study/term21/Advanced_Machine_learning/data/custom_dataset/custom_dataset/test" 
 
 val_df = df.merge(add_df, on="id")[["id", "file","question", "explanation", "answer"]]
@@ -68,7 +68,7 @@ print(val_df.head(5))
 val_dataset = VQA_Dataset_2(val_df, processor, img_folder) 
 
 
-output_csv = "./test/test_gen_answer/test_check_point2252_gen_answer.csv"
+output_csv = "./test/test_check_point2252_gen_answer.csv"
 
 if not os.path.exists(output_csv):
     pd.DataFrame(columns=["id", "question", "explanation", "old_answer", "new_answer"]).to_csv(output_csv, index=False)

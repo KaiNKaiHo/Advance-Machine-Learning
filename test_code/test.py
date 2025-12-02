@@ -18,23 +18,18 @@ import re
 model_id = "Qwen/Qwen3-VL-2B-Instruct"
 
 model, processor = create_model(model_id)
-adapter_path = "/home/s2510447/Study/term21/Advanced_Machine_learning/checkpointsfull/checkpoint-1350"
+adapter_path = "/home/s2510447/Study/term21/Advanced_Machine_learning/checkpointsfull/checkpoint-1126"
 model.load_adapter(adapter_path)
 
 
-
-# df = pd.read_csv('/home/s2510447/Study/term21/Advanced_Machine_learning/data/custom_dataset/custom_dataset/train_labels.csv')
 df = pd.read_csv('/home/s2510447/Study/term21/Advanced_Machine_learning/data/custom_dataset/custom_dataset/test_non_labels.csv')
 img_folder = "/home/s2510447/Study/term21/Advanced_Machine_learning/data/custom_dataset/custom_dataset/test" 
-# img_folder = "/home/s2510447/Study/term21/Advanced_Machine_learning/data/custom_dataset/custom_dataset/train" 
-# _, val_df = train_test_split(df, test_size=0.1, random_state=42, shuffle=True)
 
-# val_dataset = VQA_Dataset(val_df, processor, img_folder, True) 
 
 val_dataset = VQA_Dataset(df, processor, img_folder, False) 
 
-output_csv = "./test/test_checkpoint2b_yumeyama/test_all_1350.csv"
-# output_csv = "./test/results_log.csv"
+output_csv = ".test/gen_reasoning_1126.csv"
+
 # Nếu file chưa tồn tại → tạo header
 if not os.path.exists(output_csv):
     # pd.DataFrame(columns=["image", "question", "true_answer", "true_explaination", "prediction","p_answer","p_explain"]).to_csv(output_csv, index=False)
