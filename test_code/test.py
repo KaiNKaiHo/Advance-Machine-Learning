@@ -18,7 +18,7 @@ import re
 model_id = "Qwen/Qwen3-VL-2B-Instruct"
 
 model, processor = create_model(model_id)
-adapter_path = "/home/s2510447/Study/term21/Advanced_Machine_learning/checkpointsfull/checkpoint-1126"
+adapter_path = "./checkpoint/checkpoint-1126"
 model.load_adapter(adapter_path)
 
 
