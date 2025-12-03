@@ -71,7 +71,7 @@ val_dataset = VQA_Dataset_2(val_df, processor, img_folder)
 output_csv = "./test/test_check_point2252_gen_answer.csv"
 
 if not os.path.exists(output_csv):
-    pd.DataFrame(columns=["id", "question", "explanation", "old_answer", "new_answer"]).to_csv(output_csv, index=False)
+    pd.DataFrame(columns=["id", "explanation", "new_answer"]).to_csv(output_csv, index=False)
 
 for sample in val_dataset:
     id = sample[0]
@@ -83,10 +83,8 @@ for sample in val_dataset:
     print(f"result: {result}")
     entry = pd.DataFrame([{
         "id": id,
-        "question": question,
-        "explanation": explanation,   # lấy lần predict cuối
-        "old_answer": old_answer,
-        "new_answer": result
+        "new_answer": result,
+        "explanation": explanation,
     }])
 
     entry.to_csv(output_csv, mode="a", header=False, index=False)

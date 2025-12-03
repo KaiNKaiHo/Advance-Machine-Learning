@@ -6,8 +6,8 @@ import pandas as pd
 import torch
 
 
-input_csv = "/home/s2510447/Study/term21/Advanced_Machine_learning/test/test_checkpoint2b_yumeyama/test_check_point2815.csv"
-output_csv_new = "/home/s2510447/Study/term21/Advanced_Machine_learning/test/test_checkpoint2b_yumeyama/test_check_point2815_added.csv"
+input_csv = "./test/test_check_point2252_gen_answer.csv"
+output_csv_new = "./test/test_check_point2252_gen_answer_fixed.csv"
 
 df = pd.read_csv('/home/s2510447/Study/term21/Advanced_Machine_learning/data/custom_dataset/custom_dataset/test_non_labels.csv')
 input_df = pd.read_csv(input_csv)
@@ -20,7 +20,7 @@ print(len(re_run_df))
 print(re_run_df.iloc[0])
 
 model, processor = create_model("Qwen/Qwen3-VL-2B-Instruct")
-adapter_path = "/home/s2510447/Study/term21/Advanced_Machine_learning/checkpoint_yumeyama/checkpoint-2815"
+adapter_path = "./checkpoint/checkpoint-1126"
 model.load_adapter(adapter_path)
 
 val_dataset = VQA_Dataset(re_run_df, processor, img_folder, False) 

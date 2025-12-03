@@ -28,7 +28,7 @@ img_folder = "/home/s2510447/Study/term21/Advanced_Machine_learning/data/custom_
 
 val_dataset = VQA_Dataset(df, processor, img_folder, False) 
 
-output_csv = ".test/gen_reasoning_1126.csv"
+output_csv = "./test/gen_reasoning_1126.csv"
 
 # Nếu file chưa tồn tại → tạo header
 if not os.path.exists(output_csv):

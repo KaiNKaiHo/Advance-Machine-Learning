@@ -107,33 +107,6 @@ def remove_duplicates(df):
     return df
 
 
-# def clean_explanation(x):
-#     # Nếu là NaN thì trả lại luôn
-#     if pd.isna(x):
-#         return x
-
-#     # TH1: giá trị là một list thực sự
-#     if isinstance(x, list):
-#         return x[0]
-
-#     # TH2: giá trị là string
-#     if isinstance(x, str):
-#         text = x.strip()
-
-#         # Nếu chuỗi *trông giống* list (bắt đầu bằng '[' và kết thúc ']')
-#         if text.startswith("[") and text.endswith("]"):
-#             try:
-#                 parsed = ast.literal_eval(text)   # biến string -> list
-#                 if isinstance(parsed, list):
-#                     return parsed[0]              # lấy phần đầu
-#             except:
-#                 pass  # Nếu parse lỗi thì xử lý như chuỗi bình thường
-
-#         # Còn lại: chỉ cần xóa ký tự '[' và ']'
-#         return text.replace("[", "").replace("]", "")
-
-#     # Trường hợp khác trả lại nguyên
-#     return x
 
 def clean_explanation(value):
     if pd.isna(value):
@@ -206,26 +179,20 @@ def merge_answer(df1, df2):
     return df2
 
 # --- Đọc input ---
-# input_path = "/home/s2510447/Study/term21/Advanced_Machine_learning/test/full/test_check_point2252_fixed_with_1126.csv"
-# # test_data_path = "/home/s2510447/Study/term21/Advanced_Machine_learning/data/custom_dataset/custom_dataset/test_non_labels.csv"
-# output_path = "/home/s2510447/Study/term21/Advanced_Machine_learning/test/full/final.csv"
+input_path = "./test/test_check_point2252_gen_answer.csv"
+# test_data_path = "/home/s2510447/Study/term21/Advanced_Machine_learning/data/custom_dataset/custom_dataset/test_non_labels.csv"
+output_path = "/home/s2510447/Study/term21/Advanced_Machine_learning/test/full/final.csv"
 
-# df = pd.read_csv(input_path)
-# # df2 = pd.read_csv(test_data_path)
-# # # --- Chuẩn hóa answer ---
-# # df_fixed = merge_df(df1,df2)
-# # df_fixed = modify(df_fixed)
-# # df_fixed = remove_duplicates(df_fixed)
-# # df_fixed = modify(df1)
-# df["explanation"] = df["explanation"].apply(clean_explanation)
-# # --- Ghi ra output ---
-# df.to_csv(output_path, index=False)
+df = pd.read_csv(input_path)
+# df2 = pd.read_csv(test_data_path)
+# # --- Chuẩn hóa answer ---
+# df_fixed = merge_df(df1,df2)
+# df_fixed = modify(df_fixed)
+# df_fixed = remove_duplicates(df_fixed)
+# df_fixed = modify(df1)
+df["explanation"] = df["explanation"].apply(clean_explanation)
+# --- Ghi ra output ---
+df.to_csv(output_path, index=False)
 
-# print(f"✔ Đã sửa answer và lưu vào: {output_path}")
+print(f"✔ Đã sửa answer và lưu vào: {output_path}")
 
-df1 = pd.read_csv("/home/s2510447/Study/term21/Advanced_Machine_learning/test/temop/test_check_point2252_fixed_with_1126.csv")
-df2 = pd.read_csv("/home/s2510447/Study/term21/Advanced_Machine_learning/test/temop/final.csv")
-output = "/home/s2510447/Study/term21/Advanced_Machine_learning/test/temop/final____.csv"
-df2 = merge_answer(df1,df2)
-df2.to_csv(output, index=False)
-print(f"✔ Đã sửa answer và lưu vào: {output}")
